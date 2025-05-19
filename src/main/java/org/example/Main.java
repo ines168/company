@@ -30,6 +30,23 @@ public class Main {
         u1.getPersonSet().add(p1);
         em.persist(u1);
 
+        getContracts(em);
+
+        Person p2 = new Person();
+        p2.setName("Ivo Ivić");
+        em.persist(p2);
+
+        u1.getPersonSet().add(p2);
+        em.persist(u1);
+
+        getContracts(em);
+
+        tx.commit();
+        em.close();
+        emf.close();
+    }
+
+    public static void getContracts(EntityManager em) {
         List<Contract> contracts = em.createQuery("select c from Contract c", Contract.class).getResultList();
         for (Contract c : contracts) {
             System.out.println("Ugovor: ");
@@ -41,11 +58,5 @@ public class Main {
 
             }
         }
-
-
-
-        tx.commit();
-        em.close();
-        emf.close();
     }
 }
