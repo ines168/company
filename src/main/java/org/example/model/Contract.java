@@ -3,6 +3,7 @@ package org.example.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +13,8 @@ public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Date localDate;
+    private LocalDate startDate;
+    private int durationInMonths;
     private BigDecimal salary;
 
     @ManyToMany (mappedBy = "contractSet")
@@ -32,12 +34,20 @@ public class Contract {
         this.id = id;
     }
 
-    public Date getLocalDate() {
-        return localDate;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setLocalDate(Date localDate) {
-        this.localDate = localDate;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public int getDurationInMonths() {
+        return durationInMonths;
+    }
+
+    public void setDurationInMonths(int durationInMonths) {
+        this.durationInMonths = durationInMonths;
     }
 
     public BigDecimal getSalary() {
